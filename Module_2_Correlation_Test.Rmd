@@ -75,6 +75,41 @@ plot(fitted(model6), res6)
 abline(0,0)
 ```
 
+```{r}
+plot(BodyFat$Wrist.Inch , BodyFat$BODYFAT, main="BodyFat % by Wrist",
+   xlab="Wrist Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Wrist.Inch.), col="red")
+summary(model15 <- lm(BodyFat$BODYFAT~BodyFat$Wrist.Inch.))
+res15 <- resid(model15)
+plot(fitted(model15), res15)
+abline(0,0)
+print(cor(BodyFat$BODYFAT,BodyFat$Wrist.Inch.))
+```
+
+```{r}
+plot(BodyFat$Knee.Inch , BodyFat$BODYFAT, main="BodyFat % by Knee",
+   xlab="Knee Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Knee.Inch.), col="red")
+summary(model16 <- lm(BodyFat$BODYFAT~BodyFat$Knee.Inch.))
+res16 <- resid(model16)
+plot(fitted(model16), res16)
+abline(0,0)
+print(cor(BodyFat$BODYFAT,BodyFat$Knee.Inch.))
+```
+
+```{r}
+plot(BodyFat$Biceps.Inch , BodyFat$BODYFAT, main="BodyFat % by Bicep",
+   xlab="Bicep Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Biceps.Inch.), col="red")
+summary(model17 <- lm(BodyFat$BODYFAT~BodyFat$Biceps.Inch.))
+res17 <- resid(model17)
+plot(fitted(model17), res17)
+abline(0,0)
+print(cor(BodyFat$BODYFAT,BodyFat$Biceps.Inch.))
+```
+
+
+
 ## Density Comparisons
 
 ```{r}
@@ -151,5 +186,42 @@ summary(model14 <- lm(BodyFat$DENSITY~BodyFat$WEIGHT + BodyFat$HEIGHT))
 res14 <- resid(model14)
 plot(fitted(model14), res14)
 abline(0,0)
+```
+
+## All correlations
+
+```{r}
+par(mfrow=c(4,3))
+##scatter plot
+print("Density Correlation:")
+plot(BodyFat$DENSITY,BodyFat$BODYFAT)
+cor(BodyFat$DENSITY,BodyFat$BODYFAT)
+print("Weight Correlation:")
+plot(BodyFat$WEIGHT,BodyFat$BODYFAT)
+cor(BodyFat$WEIGHT,BodyFat$BODYFAT)
+print("Neck Correlation:")
+plot(BodyFat$Neck.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Neck.Inch.,BodyFat$BODYFAT)
+print("Chest Correlation:")
+plot(BodyFat$Chest.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Chest.Inch.,BodyFat$BODYFAT)
+print("DAbdomen Correlation:")
+plot(BodyFat$Abdomen.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Abdomen.Inch.,BodyFat$BODYFAT)
+print("Hip Correlation:")
+plot(BodyFat$Hip.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Hip.Inch.,BodyFat$BODYFAT)
+print("Thigh Correlation:")
+plot(BodyFat$Thigh.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Thigh.Inch.,BodyFat$BODYFAT)
+print("Knee Correlation:")
+plot(BodyFat$Knee.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Knee.Inch.,BodyFat$BODYFAT)
+print("Ankle Correlation:")
+plot(BodyFat$Ankle.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Ankle.Inch.,BodyFat$BODYFAT)
+print("Bicep Correlation:")
+plot(BodyFat$Biceps.Inch.,BodyFat$BODYFAT)
+cor(BodyFat$Biceps.Inch.,BodyFat$BODYFAT)
 ```
 
