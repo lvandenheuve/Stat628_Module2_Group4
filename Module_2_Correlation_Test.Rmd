@@ -1,0 +1,155 @@
+---
+title: "Stat 628 Group 4 Module 2 Correlation Tests"
+author: "Luke VandenHeuvel"
+date: "10/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(readr)
+knitr::opts_chunk$set(echo = TRUE)
+BodyFat <- read.csv("BodyFat2.0.csv")
+```
+
+## Bodyfat Comparisons
+
+
+```{r}
+plot(BodyFat$WEIGHT, BodyFat$BODYFAT, main="BodyFat % by Weight",
+   xlab="Weight", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$WEIGHT), col="red")
+summary(model1 <- lm(BodyFat$BODYFAT~BodyFat$WEIGHT))
+res1 <- resid(model1)
+plot(fitted(model1), res1)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Neck.Inch., BodyFat$BODYFAT, main="BodyFat % by Neck",
+   xlab="Neck Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Neck.Inch.), col="red")
+summary(model2 <- lm(BodyFat$BODYFAT~BodyFat$Neck.Inch.))
+res2 <- resid(model2)
+plot(fitted(model2), res2)
+abline(0,0)
+```
+
+
+```{r}
+plot(BodyFat$Chest.Inch., BodyFat$BODYFAT, main="BodyFat % by Chest",
+   xlab="Chest Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Chest.Inch.), col="red")
+summary(model3 <- lm(BodyFat$BODYFAT~BodyFat$Chest.Inch.))
+res3 <- resid(model3)
+plot(fitted(model3), res3)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Abdomen.Inch., BodyFat$BODYFAT, main="BodyFat % by Abdomen",
+   xlab="Abdomen Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Abdomen.Inch.), col="red")
+summary(model4 <- lm(BodyFat$BODYFAT~BodyFat$Abdomen.Inch.))
+res4 <- resid(model4)
+plot(fitted(model4), res4)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Hip.Inch., BodyFat$BODYFAT, main="BodyFat % by Hip",
+   xlab="Hip Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Hip.Inch.), col="red")
+summary(model5 <- lm(BodyFat$BODYFAT~BodyFat$Hip.Inch.))
+res5 <- resid(model5)
+plot(fitted(model5), res5)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Thigh.Inch., BodyFat$BODYFAT, main="BodyFat % by Thigh",
+   xlab="Thigh Circ.", ylab="BodyFat %", pch=19)
+abline(lm(BodyFat$BODYFAT~BodyFat$Thigh.Inch.), col="red")
+summary(model6 <- lm(BodyFat$BODYFAT~BodyFat$Thigh.Inch.))
+res6 <- resid(model6)
+plot(fitted(model6), res6)
+abline(0,0)
+```
+
+## Density Comparisons
+
+```{r}
+plot(BodyFat$WEIGHT, BodyFat$DENSITY, main="Density by Weight",
+   xlab="Weight", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$WEIGHT), col="red")
+summary(model7 <- lm(BodyFat$DENSITY~BodyFat$WEIGHT))
+res7 <- resid(model7)
+plot(fitted(model7), res7)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Neck.Inch., BodyFat$DENSITY, main="Density by Neck",
+   xlab="Neck Circ.", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$Neck.Inch.), col="red")
+summary(model8 <- lm(BodyFat$DENSITY~BodyFat$Neck.Inch.))
+res8 <- resid(model8)
+plot(fitted(model8), res8)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Chest.Inch., BodyFat$DENSITY, main="Density by Chest",
+   xlab="Chest Circ.", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$Chest.Inch.), col="red")
+summary(model9 <- lm(BodyFat$DENSITY~BodyFat$Chest.Inch.))
+res9 <- resid(model9)
+plot(fitted(model9), res9)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Abdomen.Inch., BodyFat$DENSITY, main="Density by Abdomen",
+   xlab="Abdomen Circ.", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$Abdomen.Inch.), col="red")
+summary(model10 <- lm(BodyFat$DENSITY~BodyFat$Abdomen.Inch.))
+res10 <- resid(model10)
+plot(fitted(model10), res10)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Hip.Inch., BodyFat$DENSITY, main="Density by Hip",
+   xlab="Hip Circ.", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$Hip.Inch.), col="red")
+summary(model11 <- lm(BodyFat$DENSITY~BodyFat$Hip.Inch.))
+res11 <- resid(model11)
+plot(fitted(model11), res11)
+abline(0,0)
+```
+
+```{r}
+plot(BodyFat$Thigh.Inch., BodyFat$DENSITY, main="Density by Thigh",
+   xlab="Thigh Circ.", ylab="Density", pch=19)
+abline(lm(BodyFat$DENSITY~BodyFat$Thigh.Inch.), col="red")
+summary(model12 <- lm(BodyFat$DENSITY~BodyFat$Thigh.Inch.))
+res12 <- resid(model12)
+plot(fitted(model12), res12)
+abline(0,0)
+```
+
+## Height and Weight Combo
+
+```{r}
+summary(model13 <- lm(BodyFat$BODYFAT~BodyFat$WEIGHT + BodyFat$HEIGHT))
+res13 <- resid(model13)
+plot(fitted(model13), res13)
+abline(0,0)
+```
+
+```{r}
+summary(model14 <- lm(BodyFat$DENSITY~BodyFat$WEIGHT + BodyFat$HEIGHT))
+res14 <- resid(model14)
+plot(fitted(model14), res14)
+abline(0,0)
+```
+
