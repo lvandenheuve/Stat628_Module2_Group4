@@ -1,4 +1,4 @@
-IDNO,BODYFAT,WEIGHT,HEIGHT,ADIPOSITY,Chest(Inch),Abdomen(Inch),Hip(Inch),Ankle(Inch),Forearm(Inch),Wrist(Inch)
+IDNO,BODYFAT,WEIGHT(Pound),HEIGHT(Inch),ADIPOSITY,Chest(Inch),Abdomen(Inch),Hip(Inch),Ankle(Inch),Forearm(Inch),Wrist(Inch)
 1,12.6,154.25,67.75,23.7,36.65,33.54,37.2,8.62,10.79,6.73
 2,6.9,173.25,72.25,23.4,36.85,32.68,38.86,9.21,11.38,7.17
 3,24.6,154,66.25,24.7,37.72,34.61,39.06,9.45,9.92,6.54
