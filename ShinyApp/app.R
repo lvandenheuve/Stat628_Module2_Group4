@@ -1,10 +1,6 @@
 #
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
+# Creators: Luke VandenHeuvel, Shuguang Chen, Xinyue Zhu
+# Emails: lvandenheuve@wisc.edu, schen777@wisc.edu, xzhu357@wisc.edu
 #
 
 library(shiny)
@@ -19,9 +15,9 @@ ui <- fluidPage(
     sidebarLayout(
         sidebarPanel(
             "*This calulator is only accurate for adult males*",
-            sliderInput("age", "Age", value = 30, min = 20, max = 100, step = 1),
-            sliderInput("weight", "Weight in LBs:", min = 110, max = 400, value = 200, ticks = FALSE),
-            sliderInput("ab_circ", "Abdomen Circumference (inches)", min = 26.50, max = 60, value = 36, step = 0.25, ticks = FALSE),
+            sliderInput("age", "Age", value = 30, min = 20, max = 100, step = 1), #Age Input
+            sliderInput("weight", "Weight in LBs:", min = 110, max = 400, value = 200, ticks = FALSE), #Weight Input
+            sliderInput("ab_circ", "Abdomen Circumference (inches)", min = 26.50, max = 60, value = 36, step = 0.25, ticks = FALSE), #Ab circumference Input
             actionButton("Submit", icon("fas fa-magic"), label = "Submit")
         ),
 
@@ -40,26 +36,32 @@ ui <- fluidPage(
     )
 )
 
+
+
+
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     
-    
+    # Output of table with age, weight, and abdomen circumference
     output$sliderValues <- renderTable({
         df()
     })
+    #Creation of data frame from user input
     df <- eventReactive(input$Submit,{
         return(data.frame(
-            Name = c("Weight",
+            Measure = c("Age", "Weight",
                      "Abdomen Circumference"),
-            Value = as.character(c(paste(input$weight, "lbs"),
+            Value = as.character(c(paste(input$age, "years"), paste(input$weight, "lbs"),
                                    paste(input$ab_circ, "inches"))),
             stringsAsFactors = FALSE))
     })
+    #Calculation of body fat percentage
     myVal <- eventReactive(input$Submit,{
         bodyfat_percent = round(-62.51127 + 2.860768*input$ab_circ - 0.014148*input$weight - 0.00305*input$ab_circ*input$weight, digits = 2)
         bf_text <- paste("Your bodyfat is at", bodyfat_percent, "%")
         return(bf_text)
     })
+    #Following outputs are all for UI outputs
     user_guidance <- eventReactive(input$Submit,{
         return("Please check with the chart below to determine your bodyfat health category for your age group")
     })
@@ -84,6 +86,7 @@ server <- function(input, output) {
     output$contact_numbers <- renderText({
         "Phone Number: Luke ~ (920) 676-8854, Shuguang ~ (608) 977-4628, Xinyue ~ (608) 724-4080"
     })
+    #After inputting weight, the Ab circumference mins and maxs change so body fat cannot be too small or too large
     observe({
         input_weight <- input$weight
         starting_val = round(((20+62.51127+0.014148*input_weight)/(2.860768-0.00305*input_weight)))
@@ -92,6 +95,7 @@ server <- function(input, output) {
         updateSliderInput(session = getDefaultReactiveDomain(),"ab_circ", value = starting_val,
                           min = ab_min, max = ab_max, step = 0.25)
     })
+    #Based on the user's age, this selects the correct picture for their bodyfat categories
     pic_val <- eventReactive(input$Submit,{
         if(input$age>19 && input$age<30) {
             id <- '20_29.png'
