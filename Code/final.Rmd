@@ -1,0 +1,209 @@
+---
+title: "Shuguang_ChenM2"
+author: "Shuguang Chen"
+date: "10/15/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+data<- read.csv("/Users/chen/Desktop/BodyFat_Cleaned.csv")
+colnames(data)
+```
+
+
+```{r}
+#Univariate Model
+
+#BODYFAT
+#WEIGHT  HEIGHT  ADIPOSITY  CHEST  ABDOMEN  HIP  ANKLE  FOREARM  WRIST
+
+model1 <- lm(data$BODYFAT~data$WEIGHT)  #Multiple R-squared:  0.3588,	Adjusted R-squared:  0.3563
+summary(model1)
+
+model2 <- lm(data$BODYFAT~data$HEIGHT)  #Multiple R-squared:  0.002602,	Adjusted R-squared:  -0.00142
+summary(model2)
+
+model3 <- lm(data$BODYFAT~data$ADIPOSITY)  #Multiple R-squared:  0.5193,	Adjusted R-squared:  0.5174
+summary(model3)
+
+model4 <- lm(data$BODYFAT~data$Chest.Inch.)  #Multiple R-squared:  0.4808,	Adjusted R-squared:  0.4787
+summary(model4)
+
+model5 <- lm(data$BODYFAT~data$Abdomen.Inch.)  #Multiple R-squared:  0.6522,	Adjusted R-squared:  0.6508
+summary(model5)
+
+model6 <- lm(data$BODYFAT~data$Hip.Inch.)  #Multiple R-squared:  0.3765,	Adjusted R-squared:  0.3739
+summary(model6)
+
+model7 <- lm(data$BODYFAT~data$Ankle.Inch.)  #Multiple R-squared:  0.06305,	Adjusted R-squared:  0.05927
+summary(model7)
+
+model8 <- lm(data$BODYFAT~data$Forearm.Inch.)  #Multiple R-squared:  0.1176,	Adjusted R-squared:  0.1141
+summary(model8)
+
+model9 <- lm(data$BODYFAT~data$Wrist.Inch.)  #Multiple R-squared:  0.1071,	Adjusted R-squared:  0.1035 
+summary(model9)
+
+```
+
+
+```{r}
+univariate_model <- lm(data$BODYFAT~data$Abdomen.Inch.)
+#Multiple R-squared:  0.6522,	Adjusted R-squared:  0.6508
+summary(univariate_model)
+```
+
+
+
+```{r}
+cor(data$Abdomen.Inch.,data$ADIPOSITY)
+
+cor(data$Abdomen.Inch.,data$Chest.Inch.)
+
+cor(data$Abdomen.Inch.,data$Hip.Inch.)
+
+cor(data$Abdomen.Inch.,data$WEIGHT)
+
+cor(data$Abdomen.Inch.,data$HEIGHT)
+
+cor(data$Abdomen.Inch.,data$Forearm.Inch.)
+
+cor(data$Abdomen.Inch.,data$Wrist.Inch.)
+
+cor(data$Abdomen.Inch.,data$Ankle.Inch.)
+```
+
+
+```{r}
+model2_1 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$ADIPOSITY)
+summary(model2_1)
+```
+
+
+```{r}
+model2_2 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Chest.Inch.)
+summary(model2_2)
+```
+
+
+```{r}
+model2_3 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Hip.Inch.)
+summary(model2_3)
+```
+
+
+```{r}
+model2_4 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$WEIGHT)
+summary(model2_4)
+```
+
+
+```{r}
+model2_5 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$HEIGHT)
+summary(model2_5)
+```
+
+
+```{r}
+model2_6 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Forearm.Inch.)
+summary(model2_6)
+```
+
+
+```{r}
+model2_7 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Wrist.Inch.)
+summary(model2_7)
+```
+
+
+```{r}
+model2_8 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Ankle.Inch.)
+summary(model2_8)
+```
+
+
+```{r}
+mixmodel1 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$ADIPOSITY+data$Abdomen.Inch.*data$ADIPOSITY)
+summary(mixmodel1)
+```
+
+
+```{r}
+mixmodel2 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Chest.Inch.+data$Abdomen.Inch.*data$Chest.Inch.)
+summary(mixmodel2)
+```
+
+
+```{r}
+mixmodel3 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Hip.Inch.+data$Abdomen.Inch.*data$Hip.Inch.)
+summary(mixmodel3)
+```
+
+
+```{r}
+mixmodel4 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$WEIGHT+data$Abdomen.Inch.*data$WEIGHT)
+summary(mixmodel4)
+```
+
+
+```{r}
+mixmodel5 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$HEIGHT+data$Abdomen.Inch.*data$HEIGHT)
+summary(mixmodel5)
+```
+
+
+```{r}
+mixmodel6 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Forearm.Inch.+data$Abdomen.Inch.*data$Forearm.Inch.)
+summary(mixmodel6)
+```
+
+
+```{r}
+mixmodel7 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Wrist.Inch.+data$Abdomen.Inch.*data$Wrist.Inch.)
+summary(mixmodel7)
+```
+
+
+```{r}
+mixmodel8 <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Ankle.Inch.+data$Abdomen.Inch.*data$Ankle.Inch.)
+summary(mixmodel8)
+```
+
+
+```{r}
+finalmodel <- lm(data$BODYFAT~data$Abdomen.Inch.+data$Wrist.Inch.+data$Abdomen.Inch.*data$Wrist.Inch.)
+summary(finalmodel)
+```
+
+
+```{r}
+finalmodel <- lm(data$BODYFAT~data$Abdomen.Inch.+data$WEIGHT+data$Abdomen.Inch.*data$WEIGHT)
+summary(finalmodel)
+```
+
+
+
+```{r fig.height=4, fig.width=5}
+library(scatterplot3d)
+
+scatterplot3d(data$Abdomen.Inch.,data$WEIGHT,data$BODYFAT,
+              xlab = "Abdomen Circumference(Inch)", ylab = "Weight(Pound)",zlab = "Bodyfat",
+              main = "3D scatterplot")
+```
+
+
+```{r echo=FALSE}
+plot(data$WEIGHT,data$BODYFAT,xlab = "Weight(Pound)",ylab = "Bodyfat", main = "Weight against Bodyfat")
+```
+
+
+```{r}
+plot(data$Abdomen.Inch.,data$BODYFAT,xlab = "Abdomen(Inch)",ylab = "Bodyfat", main = "Abdomen against Bodyfat")
+```
+
+
