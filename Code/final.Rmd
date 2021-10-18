@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("ggplot2")
 ```
 
 
@@ -206,4 +207,7 @@ plot(data$WEIGHT,data$BODYFAT,xlab = "Weight(Pound)",ylab = "Bodyfat", main = "W
 plot(data$Abdomen.Inch.,data$BODYFAT,xlab = "Abdomen(Inch)",ylab = "Bodyfat", main = "Abdomen against Bodyfat")
 ```
 
-
+```{r}
+ggplot(data, aes(WEIGHT, Abdomen.Inch.)) +
+    geom_point(aes(color = BODYFAT)) + xlab("Weight (Pounds)") + ylab("Abdomen Circumference (Inches)")
+```
